@@ -12,6 +12,12 @@ function Grid(props) {
                     return <ClickContainer key={ind} handleClick={() => props.handleClick(ind)} id={ind} icon={el} />
                 })}
             </div>
+            <div className="result">
+                <div className="resultText">Result:</div>
+                <div className="borderResult">
+                    {props.wins.player1} : {props.wins.player2}
+                </div>
+            </div>
         </div>
     )
 }

@@ -165,4 +165,293 @@ header{
     
 }
 
+.wave-text{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.playerWin{
+    position: absolute;
+    top: 50%;
+    font-size: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+
+.wave-text span {
+    display: inline-block;
+    font-size: 5rem;
+    animation: wave 2s ease-in-out infinite;
+    color: white;
+}
+
+.wave-text span:nth-child(4n-1) {
+    animation-delay: 0s;
+}
+.wave-text span:nth-child(4n-2) {
+    animation-delay: 0.2s;
+}
+.wave-text span:nth-child(4n-3) {
+    animation-delay: 0.4s;
+}
+.wave-text span:nth-child(4n-4) {
+    animation-delay: 0.6s;
+}
+
+
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.bodyWin{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.result{
+    position: absolute;
+    right: 10%;
+    top: 30%;
+    transform: translateX(-30%);
+}
+
+.borderResult{
+    background-color: white;
+    font-size: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    font-size: 40px;
+}
+
+.playerOne .borderResult{
+    border: 5px dashed var(--dark-blue);
+    color: var(--dark-blue);
+      
+}
+
+.playerTwo .borderResult{
+    border: 5px dashed var(--dark-red);
+    color: var(--dark-red);
+      
+}
+
+.resultText{
+    color: white;
+     margin: auto;
+     position: relative;
+     left: 50%;
+     transform: translateX(-50%);
+     top: 0;
+     margin-bottom: 20px;
+     font-size: 40px;
+     width: fit-content;
+     letter-spacing: 2px;
+
+}
+
+.plOneWin{
+    background-color: var(--light-blue);
+}
+
+.plTwoWin{
+    background-color: var(--light-red);
+}
+
+.plOneWin .buttonsWin button{
+   background-color: var(--dark-blue);
+}
+
+.plTwoWin .buttonsWin button{
+   background-color: var(--dark-red);
+}
+
+.plOneWin .buttonsWin button:hover{
+   color: var(--dark-blue);
+   background-color: white;
+   transition: all 0.5s ease-in-out;
+}
+
+.plTwoWin .buttonsWin button:hover{
+    color: var(--dark-red);
+    background-color: white;
+   transition: all 0.5s ease-in-out;
+}
+
+
+.plOneWin .playerWin{
+    color: var(--dark-blue);
+}
+
+.plTwoWin .playerWin{
+    color: var(--dark-red);
+}
+
+.buttonsWin{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+}
+
+
+
+.buttonsWin button{
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    width: 150px;
+    height: 70px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.statusBody{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--background-start);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.statusBg{
+    background-color: white;
+    width: 40%;
+    height: 80%;
+    border-radius: 20px;
+    display: flex;
+    border: 5px solid var(--start-dark);
+
+}
+
+.left{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.right{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+}
+
+.verticalHr{
+    position: relative;
+    top: 7%;
+    left: -50%;
+    border: 3px solid var(--start-dark);
+    height: 80%;
+}
+
+.statusPlOne{
+    color: var(--light-blue);
+    font-size: 50px;
+   text-align: center;
+   position: relative;
+   top: 10%;
+
+}
+
+.statusPlTwo{
+    color: var(--light-red);
+    font-size: 50px;
+   text-align: center;
+     position: relative;
+   top: 10%;
+}
+
+.statusResults{
+    position: absolute;
+    width: 40%;
+    top: 32%;
+    max-height: 43%;
+    padding-bottom: 20px;
+    scrollbar-color: white  white;
+}
+
+.resultsDiv{
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+    font-size: 50px;
+    margin-bottom: 30px;
+
+}
+
+.horizontalHr{
+    position: absolute;
+    top: 25%;
+    border: 3px solid var(--start-dark);
+    width: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.leftRes{
+    color: var(--dark-blue);
+}
+
+.rightRes{
+    color: var(--dark-red);
+}
+
+.finalDiv{
+    border: 5px dashed var(--start-dark);
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    border-radius: 10px;
+    font-size: 60px;
+    transform: translateX(-40%);
+    background-color: white;
+}
+
+.finalDisplay{
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       position: relative;
+      
+}
+
+.totalText{
+    color: var(--start-dark);
+       font-size: 40px;
+       height: fit-content;
+       margin-left: 50px;
+
+}
+
+
+
+
+
 

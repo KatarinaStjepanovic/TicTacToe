@@ -6,7 +6,6 @@ import Header from "./Header"
 import Grid from "./Grid"
 import Start from "./Start"
 import Win from "./Win"
-import Even from "./Even"
 
 import { faX } from "@fortawesome/free-solid-svg-icons"
 import { faO } from "@fortawesome/free-solid-svg-icons"
@@ -18,17 +17,22 @@ class App extends React.Component {
             player: 1,
             icons: Array(9).fill(null),
             isWin: false,
-            isEven: false,
-            isStart: true
+            isStart: true,
+            wins:  {
+               player1: 0,
+               player2: 0
+            },
+            statusBar : []
         }
 
         this.handleClick = this.handleClick.bind(this)
         this.checkIfWon = this.checkIfWon.bind(this)
         this.startGame = this.startGame.bind(this)
+        this.restartGame = this.restartGame.bind(this)
     }
 
 
-    checkIfWon() {
+    checkIfWon(player) {
         const winningCombos = [
             [0, 1, 2],
             [3, 4, 5],
@@ -49,19 +53,48 @@ class App extends React.Component {
                 icons[a] === icons[b] &&
                 icons[a] === icons[c]
             ) {
-                this.setState({ isWin: true })
-                return;
+
+            const winner = `player${player}`;
+            const newWins = {
+                ...this.state.wins,
+                [winner]: this.state.wins[winner] + 1
+            };
+
+            this.setState({ wins: newWins });
+
+            this.setState( prevState => { 
+                return {
+                    statusbar: prevState.statusBar.push(prevState.wins) 
+                }
+             }  
+            )
+
+           if (newWins.player1 === 3 || newWins.player2 === 3) {
+                this.setState({ isWin: true });
+            } else {
+                this.setState({ icons: Array(9).fill(null) });
             }
+            return;
+          }
         }
 
-        if (icons.every(icon => icon !== null)) {
-            this.setState({ isEven: true })
+        if( this.state.icons.every( icon  => icon !== null)){
+            this.setState({ icons: Array(9).fill(null) });
+              this.setState( prevState => { 
+                return {
+                    statusbar: prevState.statusBar.push(prevState.wins) 
+                }
+             }  
+            )
         }
+
+
 
     }
 
 
     handleClick(ind) {
+        const currentPLayer = this.state.player
         this.setState((prevState) => {
             if (prevState.icons[ind] !== null) return {}
 
@@ -69,11 +102,12 @@ class App extends React.Component {
             newIcons[ind] = prevState.player === 1 ? faX : faO
 
             return {
-                player: prevState.player === 1 ? 2 : 1,
-                icons: newIcons
+                player: prevState.player === 1 ? 2 : 1
+                ,icons: newIcons
             }
-        }, this.checkIfWon
+        }, () => this.checkIfWon(currentPLayer)
         )
+
 
 
 
@@ -84,6 +118,21 @@ class App extends React.Component {
         this.setState({ isStart: false })
     }
 
+    restartGame(){
+        this.setState ({
+            player: 1,
+            icons: Array(9).fill(null),
+            isWin: false,
+            isStart: false,
+            wins:  {
+               player1: 0,
+               player2: 0
+            },
+            statusBar : []
+        })
+    }
+
+
 
     render() {
         if (this.state.isStart) {
@@ -92,18 +141,14 @@ class App extends React.Component {
             )
         } else if (this.state.isWin) {
             return(
-                <Win player={this.state.player} />
+                <Win player={this.state.player} restartGame = {this.restartGame} statusBar = {this.state.statusBar} />
             )
 
-        } else if (this.state.isEven) {
-            return (
-                < Even />
-            )
         } else {
             return (
                 <div>
                     < Header player={this.state.player} />
-                    < Grid player={this.state.player} icons={this.state.icons} handleClick={this.handleClick} />
+                    < Grid player={this.state.player} icons={this.state.icons} handleClick={this.handleClick} wins = {this.state.wins}/>
                 </div>
             )
 
